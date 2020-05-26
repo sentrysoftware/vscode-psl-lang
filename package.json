@@ -1,0 +1,25 @@
+{
+    "name": "vscode-psl-lang",
+    "displayName": "psl-lang",
+    "description": "PSL (BMC PATROL Scripting Language) syntax highlighting for Visual Studio Code",
+    "version": "1.0.0",
+    "engines": {
+        "vscode": "^1.45.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "psl",
+            "aliases": ["PSL", "psl"],
+            "extensions": [".psl",".pslx",".pslh"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "psl",
+            "scopeName": "source.psl",
+            "path": "./syntaxes/psl.tmLanguage.json"
+        }]
+    }
+}

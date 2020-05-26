@@ -1,0 +1,308 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "PSL",
+	"patterns": [
+		{
+			"include": "#precompile"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#builtin"
+		},
+		{
+			"include": "#functions"
+		},
+		{
+			"include": "#declarations"
+		},
+		{
+			"include": "#operators"
+		},
+		{
+			"include": "#punctuation"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#comments"
+		}
+	],
+	"repository": {
+
+		"precompile": {
+			"patterns": [
+				{
+					"name": "meta.define.psl",
+					"match": "^\\s*(#define)(?:\\s+(?:([a-zA-Z_][0-9a-zA-Z_]*)(?:\\s+(.*))?\\s*)?)?$",
+					"captures": {
+						"1": {
+							"name": "storage.modifier.psl"
+						},
+						"2": {
+							"name": "variable.psl"
+						},
+						"3": {
+							"name": "string.quoted.double.psl"
+						}
+					}
+				},
+				{
+					"name": "meta.include.psl",
+					"match": "^\\s*(#include)(?:\\s+(?:(?:(\".+\")|([^\"\\s]+))\\s*(.*))?)?$",
+					"captures": {
+						"1": { "name": "keyword.control.psl" },
+						"2": { "name": "string.quoted.double.psl" },
+						"3": { "name": "entity.name.include.psl" },
+						"4": { "name": "invalid.illegal" }
+					}
+				}
+			]
+		},
+
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.psl",
+				"match": "\\b(exit|last|next|requires|return|until|case|default|do|elsif|else|for|foreach|if|switch|while|line|word|__single|__multi)\\b"
+			}]
+		},
+
+		"constants": {
+			"patterns": [
+				{
+					"name": "constant.language.psl",
+					"match": "\\b(ALARM|CHART_ADD_GRAPH|CHART_DELETE_GRAPH|CHART_DESTROY|CHART_LOAD|CHART_PRINT|EOF|FALSE|False|false|NO|No|no|OK|OFFLINE|PSL_PROF_LOG|R_CHECK_HORIZ|R_CHECK_VERT|R_CLICKER|R_COLUMN|R_FRAME|R_ICON|R_LABEL|R_LABEL_CENTER|R_LIST_MULTIPLE|R_LIST_MULTIPLE_ND|R_LIST_SINGLE|R_LIST_SINGLE_ND|R_MENU|R_POPUP|R_POPUP_SCROLLED|R_RADIO_HORIZ|R_RADIO_VERT|R_ROW|R_SCALE_HORIZ|R_SCALE_VERT|R_SPINNER|R_TEXT_FIELD|R_TEXT_FIELD_LABEL|R_TOGGLE|TRUE|True|true|TRIM_LEADING|TRIM_TRAILING|TRIM_REDUNDANT|TRIM_LEADING_AND_TRAILING|VOID|WARN)\\b"
+				},
+				{
+					"name": "variable.language.psl",
+					"match": "\\b(errno|exit_status|PslDebug)\\b"
+				}
+			]
+		},
+
+		"builtin": {
+			"patterns": [
+				{
+					"name": "support.function.psl",
+					"match": "\\b(acos|add_diary|annotate|annotate_get|asctime|asin|atan|atexit|ascii_to_ebcdic|batch_set|blackout|cat|ceil|chan_exists|change_state|close|code_cvt|cond_signal|cond_wait|console_type|convert_base|convert_date|convert_locale_date|cos|cosh|create|destroy_lock|dump_hist|date|destroy|difference|dget_text|dcget_text|ebcdic_to_ascii|encrypt|event_archive|event_catalog_get|event_check|event_query|event_range_manage|event_range_query|event_report|event_schedule|event_trigger|event_trigger2|execute|exists|exp|fabs|floor|fmod|full_discovery|file|fopen|ftell|fseek|grep|get_vars|getenv|get|get_chan_info|get_ranges|get_text|gethostinfo|getpid|getpname|history_get_retention|history|index|int|is_var|intersection|isnumber|internal|in_transition|join|kill|length|lines|lock|lock_info|log|loge|log10|matchline|msg_check|msg_get_format|msg_get_severity|msg_printf|msg_sprintf|ntharg|num_consoles|nthargf|nthlinef|num_bytes|print|proc_exists|process|popen|printf|pconfig|poplines|pow|PslExecute|PslFunctionCall|PslFunctionExists|PslSetOptions|random|read|readln|refresh_parameters|remote_check|remote_close|remote_event_query|remote_event_trigger|remote_file_send|remote_open|remove|replace|rindex|sec_check_priv|sec_store_get|sec_store_set|set_alarm_ranges|set_locale|share|sin|sinh|sleep|sopen|sqrt|srandom|subset|set|substr|system|sprintf|sort|subset|snmp_agent_config|_snmp_debug|snmp_agent_stop|snmp_agent_start|snmp_h_set|snmp_h_get_next|snmp_h_get|snmp_set|snmp_walk|snmp_get_next|snmp_get|snmp_config|snmp_close|snmp_open|snmp_trap_receive|snmp_trap_ignore|snmp_trap_listen|snmp_trap_send|snmp_trap_raise_std_trap|snmp_trap_register_im|splitline|strcasecmp|str_repeat|trim|tail|tan|tanh|time|tmpnam|tolower|toupper|trace_psl_process|text_domain|unlock|unique|union|unset|va_arg|va_start|write)\\b"
+				},
+				{
+					"name": "invalid.deprecated.psl",
+					"match": "\\b(nthline)\\b"
+				}
+			]
+		},
+
+		"functions": {
+			"patterns": [
+				{
+					"name": "meta.function.psl",
+					"begin": "^(?:(?:.*(;))|(?:.*(})))?\\s*(export)\\b",
+					"beginCaptures": {
+						"1": { "name": "punctuation.definition.psl" },
+						"2": { "name": "punctuation.definition.psl" },
+						"3": { "name": "storage.modifier.psl" }
+					},
+					"end": ";",
+					"endCaptures": {
+						"0": { "name": "punctuation.definition.psl" }
+					},
+					"patterns": [
+						{
+							"include": "#comments"
+						},
+						{
+							"name": "storage.type.psl",
+							"match": "\\bfunction\\b"
+						},
+						{
+							"name": "entity.name.function.psl",
+							"match": "[a-zA-z_][a-zA-Z0-9_]*"
+						},
+						{
+							"name": "invalid.illegal",
+							"match": "[^;\\s]+"
+						}
+					]
+				},
+				{
+					"name": "meta.function.psl",
+					"begin": "^(?:(?:.*(;))|(?:.*(})))?\\s*(function)\\b",
+					"beginCaptures": {
+						"1": { "name": "punctuation.definition.psl" },
+						"2": { "name": "punctuation.definition.psl" },
+						"3": { "name": "storage.modifier.psl" }
+					},
+					"end": "{",
+					"endCaptures": {
+						"0": { "name": "punctuation.definition.psl" }
+					},
+					"patterns": [
+						{
+							"include": "#comments"
+						},
+						{
+							"name": "meta.function2.psl",
+							"begin": "\\b([a-zA-z_][a-zA-Z0-9_]*)(?:\\s*(\\())?",
+							"beginCaptures": {
+								"1": { "name": "entity.name.function.psl" },
+								"2": { "name": "punctuation.definition.psl" }
+							},
+							"end": "(\\))",
+							"endCaptures": {
+								"1": { "name": "variable.parmeter.psl" },
+								"2": { "name": "punctuation.definition.psl" }
+							},
+							"patterns": [
+								{
+									"include": "#comments"
+								},
+								{
+									"name": "variable.parameter.psl",
+									"match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+								},
+								{
+									"name": "variable.parameter.psl",
+									"match": "\\.\\.\\."
+								},
+								{
+									"name": "punctuation.definition.variable.psl",
+									"match": ","
+								},
+								{
+									"name": "invalid.illegal",
+									"match": "[^()\\s]+"
+								}
+							]
+						},
+						{
+							"name": "invalid.illegal",
+							"match": "[^{\\s]+"
+						}
+					]
+				}
+			]
+		},
+
+		"declarations": {
+			"patterns": [
+				{
+					"name": "meta.variable.psl",
+					"begin": "^(?:(?:.*(;))|(?:.*(})))?\\s*(local)\\b",
+					"beginCaptures": {
+						"1": { "name": "punctuation.definition.psl" },
+						"2": { "name": "punctuation.definition.psl" },
+						"3": { "name": "storage.type.psl" }
+					},
+					"end": ";",
+					"endCaptures": {
+						"0": { "name": "punctuation.definition.psl" }
+					},
+					"patterns": [
+						{
+							"include": "#comments"
+						},
+						{
+							"name": "variable.parameter.psl",
+							"match": "[a-zA-Z_][a-zA-Z0-9_]*"
+						},
+						{
+							"name": "punctuation.definition.variable.psl",
+							"match": ","
+						},
+						{
+							"name": "invalid.illegal",
+							"match": "[^;\\s]+"
+						}
+					]
+				},
+
+				{
+					"name": "meta.variable.psl",
+					"match": "^\\s*(#global)(?:\\s+([a-zA-Z_][a-zA-Z0-9_]*\\b)(.*)$)?",
+					"captures": {
+						"1": { "name": "storage.type.psl" },
+						"2": { "name": "variable.parameter.psl" },
+						"3": { "name": "invalid.illegal" }
+					}
+				}
+			]
+
+		},
+
+		"operators": {
+			"patterns": [
+				{
+					"name": "keyword.operator.psl",
+					"match": "[\\.+\\-*/%=~&|^!<>?:]"
+				}
+			]
+		},
+		"punctuation": {
+			"patterns": [
+				{
+					"name": "punctuation.definition.psl",
+					"match": "[(){}\\[\\],;]"
+				}
+			]
+		},
+
+		"strings": {
+			"patterns": [
+				{
+					"name": "string.quoted.double.psl",
+					"begin": "\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.psl"
+						}
+					},
+					"patterns": [
+						{
+							"match": "\\\\[ntrbA-Z\"\\\\]",
+							"name": "constant.character.escape.psl"
+						},
+						{
+							"match": "\\\\.",
+							"name": "invalid.illegal.unrecognized-string-escape.psl"
+						}
+					],
+					"end": "\"",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.psl"
+						}
+					}
+				},
+				{
+					"name": "string.unquoted.here-doc.psl",
+					"begin": "<<<([A-Za-z_][A-Za-z0-9_]*)\\b",
+					"end": "\\b\\1\\b"
+				}
+			]
+		},
+
+		"numbers": {
+			"name": "constant.numeric.psl",
+			"match": "\\b((\\.[0-9]+)|(0(x|X)[0-9a-fA-F]*)|([0-9]+\\.[0-9]+)|[0-9]+)\\b"
+		},
+
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.number-sign.psl",
+					"match": "#.*$"
+				}
+			]
+		}
+	},
+	"scopeName": "source.psl"
+}
