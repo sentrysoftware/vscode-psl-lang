@@ -4,7 +4,8 @@
     "description": "PSL (BMC PATROL Scripting Language) syntax highlighting for Visual Studio Code",
     "version": "1.1.0",
     "publisher": "sentrysoftware",
-    "repository": "github:sentrysoftware/vscode-psl-lang",
+    "repository": "https://github.com/sentrysoftware/vscode-psl-lang",
+    "license": "MIT",
     "engines": {
         "vscode": "^1.45.0"
     },
