@@ -170,10 +170,9 @@
 								"1": { "name": "entity.name.function.psl" },
 								"2": { "name": "punctuation.definition.psl" }
 							},
-							"end": "(\\))",
+							"end": "\\)",
 							"endCaptures": {
-								"1": { "name": "variable.parmeter.psl" },
-								"2": { "name": "punctuation.definition.psl" }
+								"0": { "name": "punctuation.definition.psl" }
 							},
 							"patterns": [
 								{

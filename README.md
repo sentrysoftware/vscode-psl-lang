@@ -6,6 +6,8 @@ This extension adds support for [PSL](https://docs.bmc.com/docs/PATROLAgent/1130
 
 * Standard PSL Syntax highlighting
 * Support for Sentry's PSL precompile directives
+* Support for Sentry's PSL unit testing directives
+* List of defined functions in the Outline pane
 
 ## Requirements
 
@@ -21,6 +23,10 @@ None.
 
 ## Release Notes
 
+### 1.1.0
+
+- Added list of functions to the Outline pane
+- Improved overall packaging
 
 ### 1.0.0
 

@@ -1,9 +1,12 @@
 # Change Log
 
-All notable changes to the "psl-lang" extension will be documented in this file.
+All notable changes to the "vscode-psl-lang" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## 1.1.0
 
-## [Unreleased]
+- Added list of functions to the Outline pane
+- Improved overall packaging
+
+## 1.0.0
 
 - Initial release
