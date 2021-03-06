@@ -23,6 +23,10 @@ None.
 
 ## Release Notes
 
+### 1.3.0
+
+* Added highlighting of "PSLDoc" tags
+
 ### 1.2.0
 
 * Fixed bug with function definition embedded in strings

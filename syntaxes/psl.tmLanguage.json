@@ -12,6 +12,9 @@
 			"include": "#unittests"
 		},
 		{
+			"include": "#psldoc"
+		},
+		{
 			"include": "#keywords"
 		},
 		{
@@ -82,6 +85,43 @@
 			}]
 		},
 
+		"psldoc": {
+			"patterns": [
+				{
+					"name": "meta.doc.psl",
+					"match": "^\\s*(#)\\s*(@param)(?:\\s+(\\w+)(\\s+.*)?)?",
+					"captures": {
+						"1": {
+							"name": "comment.line.number-sign.psl"
+						},
+						"2": {
+							"name": "keyword.control.psl"
+						},
+						"3": {
+							"name": "variable.parameter.psl"
+						},
+						"4": {
+							"name": "comment.line.number-sign.psl"
+						}
+					}
+				},
+				{
+					"name": "meta.doc.psl",
+					"match": "^\\s*(#)\\s*(@return)(\\s+.*)?",
+					"captures": {
+						"1": {
+							"name": "comment.line.number-sign.psl"
+						},
+						"2": {
+							"name": "keyword.control.psl"
+						},
+						"3": {
+							"name": "comment.line.number-sign.psl"
+						}
+					}
+				}
+			]
+		},
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.psl",
